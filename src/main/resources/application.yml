@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/contatos'
+    hikari:
+      username: 'compose-postgres'
+      password: 'compose-postgres'
+  jpa:
+    hibernate:
+      ddl-auto: update
