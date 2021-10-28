@@ -2,8 +2,10 @@ package br.com.letscode.Contact.configs
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class JwtUtil {
 
 
@@ -21,7 +23,7 @@ class JwtUtil {
     }
 
 
-    private fun getClaimsToken(token: String): Claims? {
+    fun getClaimsToken(token: String): Claims? {
         return try {
             Jwts.parser().setSigningKey("dawdwad".toByteArray()).parseClaimsJws(token).body
         } catch (e: Exception) {
