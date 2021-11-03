@@ -1,20 +1,20 @@
 package br.com.letscode.Contact.controller
 
+import br.com.letscode.Contact.configs.JwtUtil
 import br.com.letscode.Contact.model.Contatos
 import br.com.letscode.Contact.service.contatosService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RequestMapping("contatos")
 @RestController
-class contatosController(val service: contatosService) {
+class contatosController(val service: contatosService,val jwt: JwtUtil) {
+
 
     @PostMapping
-    fun addContatos(@RequestBody contato: Contatos): ResponseEntity<Contatos> = run {
-        ResponseEntity.ok(service.saveContatos(contato))
+    fun addContatos(@RequestBody contato: List<Contatos>, @RequestHeader toke: String): ResponseEntity<List<Contatos>> = run {
+        val sub = jwt.getClaimsToken(toke)?.subject
+        ResponseEntity.ok(service.saveContatos(contato,sub))
     }
 
 }

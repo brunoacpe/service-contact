@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service
 @Service
 class contatosService(val repository: contatosRepository) {
 
-    fun saveContatos(contatos: Contatos): Contatos = run {
-        repository.save(contatos)
+    fun saveContatos(contatos: List<Contatos>,sub: String?) = run {
+        contatos.forEach{
+            it.id = sub!!
+            repository.save(it)
+        }
+        contatos
     }
 }

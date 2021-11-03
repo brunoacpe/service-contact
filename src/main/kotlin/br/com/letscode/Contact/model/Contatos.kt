@@ -8,7 +8,13 @@ import javax.persistence.Table
 @Entity
 @Table
 data class Contatos(
+
     @Id
-    val id: String,
-    val lista: List<>
+    var id: String,
+    val ag: String = "",
+    val cc: String = "",
+    val bank: String = "",
+    val type: String,
+    val key: String = ""
+
 )
